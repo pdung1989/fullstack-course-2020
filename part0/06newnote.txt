@@ -1,0 +1,10 @@
+//when the user clicks submit button:
+
+browser->server: HTTP POST https://fullstack-exampleapp.herokuapp.com/new_note_spa
+server->browser: {"message":"note created"}
+
+
+note over browser:
+the browser executes the event handler
+that creates a new note and add it to the note list 
+then renders the note list to display
