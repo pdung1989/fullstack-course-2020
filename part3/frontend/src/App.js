@@ -87,10 +87,8 @@ const App = () => {
                     }, 5000)
                 })
                 .catch(error => {
-                    console.log('ERROR')
-                    setErrorMessage(
-                        `Information of '${newName}' has been removed from the server.`
-                    )
+                    console.log(error.response.data.error)
+                    setErrorMessage(error.response.data.error)
                     setTimeout(() => {
                         setErrorMessage(null)
                     }, 5000)
