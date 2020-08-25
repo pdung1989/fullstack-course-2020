@@ -7,6 +7,7 @@ const cors = require('cors')
 
 var dateFormat = require('dateformat')
 var morgan = require('morgan')
+const { response } = require('express')
 
 app.use(cors())
 app.use(express.json())
@@ -126,6 +127,20 @@ app.post('/api/persons', (request, response, next) => {
     .catch(error => next(error))
 })
 
+app.put('/api/persons/:id', (request, response, next) => {
+  const body = request.body
+
+  const person = {
+    name: body.name,
+    number: body.number
+  }
+
+  Person.findByIdAndUpdate(request.params.id, person, {new: true})
+    .then(updatedNumber => {
+      response.json(updatedNumber)
+    })
+    .catch(error => next(error))
+})
 //ERROR HANDLER (middleware)
 const errorHandler = (error, request, response, next) => {
   console.error(error.message)
